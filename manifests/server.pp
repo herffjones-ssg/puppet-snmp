@@ -128,6 +128,12 @@ class snmp::server (
     }
   }
 
+  firewall { '100 Allow SNMP Access':
+    action => accept,
+    dport  => '161',
+    proto  => 'udp',
+  }
+
   file { 'snmpd.conf':
     ensure  => $file_ensure,
     mode    => '0644',
